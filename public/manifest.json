@@ -1,0 +1,18 @@
+{
+    "name": "Amazon Flex",
+    "short_name": "Amazon Flex",
+    "start_url": ".",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "./flex.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./flex.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,350 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Lines between navbar items */
+.sidenav a:not(:last-child) {
+  border-bottom: 1px solid #ddd;  /* Adjust color as needed */
+}
+
+/* Change text color */
+.sidenav a {
+  color: gray;  /* Adjust as necessary */
+}
+
+/* Driver Support button */
+.sidenav .driver-support {
+  color: orange;  /* Adjust as necessary */
+  background-color: #363636;
+
+}
+
+/* Emergency Help button */
+.sidenav .emergency-help {
+  color: orange;  /* Adjust as necessary */
+  background-color: #363636;
+
+}
+
+.nav-wrapper,
+.button-collapse,
+.side-nav {
+  background-color: #27282a; /* Dark Grey/Black color */
+  color: #ffffff; /* White text color */
+}
+
+.material-icons.prefix {
+  margin-right: 10px;  /* Some spacing between the icon and the input */
+  line-height: 5vh;  /* Center the icon vertically */
+}
+
+.tab-links {
+  background-color: #2c2a2b; /* Dark Grey/Black color */
+  padding: 20px 0;
+  text-align: center; /* Center the tabs */
+}
+
+.tab-links a {
+  color: #ffffff; /* White text color */
+  padding: 0 30px;
+  font-size: 14px;
+  font-weight: bold; /* Make the font bold */
+  display: inline-block; /* Make them appear in a row */
+  transition: background-color 0.3s; /* Smooth transition effect */
+}
+
+
+.tab-links a:hover {
+  background-color: #333; /* Darken color on hover */
+}
+      /* Additional CSS for the sidenav */
+      .sidenav {
+  width: 300px; /* Width of the sidebar */
+  background-color: #212121; /* Dark Grey/Black color */
+  color: #ffffff; /* White text color */
+}
+
+.sidenav li a {
+  color: #ffffff; /* White text color */
+  border-bottom: 1px solid #ddd;  /* Adjust color as needed */
+
+}
+
+.sidenav li a:hover {
+  background-color: #333; /* Darken color on hover */
+}
+
+/* Profile styling */
+.close-btn {
+  text-align: left;
+  padding: 10px;
+}
+
+.close-sidenav {
+  font-size: 24px;
+  color: #000; /* adjust color as needed */
+  text-decoration: none;
+}
+
+.profile {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.profile img {
+  width: 100px; /* adjust as needed */
+  height: 100px; /* adjust as needed */
+  border-radius: 50%;
+  margin-bottom: -30px;
+}
+
+.profile-name {
+  font-size: 16px; /* adjust as needed */
+  margin-top: 10px;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  padding-inline: 29px;
+  color: white;
+  padding-bottom: 118px;
+  margin-bottom: -118px;
+  background-color: #485050;
+  position: relative;
+  z-index: 1;
+}
+
+.refresh-icon {
+  margin-right: 10px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  height: 4vh;
+  border-radius: 20px;
+  border: 1px solid gray;
+  background-color: #0b0d0c;
+
+  padding: 2px 10px; /* Reduced vertical padding */
+}
+input[type="text"]::placeholder {
+  
+  color: gray; /* Change the color value to blue */
+}
+
+input[type="text"] {
+  border: none;
+  flex: 1;
+  height: 20px; /* Set a specific height for the input field */
+}
+.barcode-icon {
+  height: 100%;
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
+.pin {
+  width: 20px;
+  height: 20px;
+  z-index: 1; 
+  border-radius: 50% 50% 50% 0;
+  background: #677677;
+  position: relative;  /* Changed from absolute to relative for inline behavior */
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  left: 0;  /* Reset to 0 to adjust alignment */
+  margin-right: 5px;  /* Added margin to separate it from the text */
+  -webkit-border-radius: 50% 50% 50% 0;
+  -moz-border-radius: 50% 50% 50% 0;
+  -ms-border-radius: 50% 50% 50% 0;
+  -o-border-radius: 50% 50% 50% 0;
+}
+.first {
+  background-color: #34811a;
+}
+
+.pin-label {
+  width: 16px;
+  height: 13px;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 3px 0 0 2px;
+  text-align: center;
+  padding-top: 2px;
+  position: absolute;
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+
+
+
+.card-panel {
+  position: relative;
+  background-color: #0b0d0c !important;
+  box-shadow: none;
+  overflow: visible; 
+  margin-bottom: -10px; /* Provides space for the line */
+  padding-left: 50px;  /* Provides space for the pin and line on the left */
+}
+
+.card-panel::before {
+  content: "";
+  position: absolute;
+  left: 24px;           /* Align with the center of the pin */
+  top: 0;               /* Starts from the top of the card */
+  bottom: -30px;        /* Ends 20px below the card (to extend to next card) */
+  width: 2px;           /* Width of the line */
+  background-color: #697374;
+  
+  z-index: 1;           /* Ensure the line is above the pin */
+}
+.card-panel::after {
+  content: "";
+  position: absolute;
+  left: 50px;     /* Starts from the beginning of the text/content area */
+  right: -200vw;  /* Push the line beyond the screen's boundary */
+  bottom: 20px;      /* Positioned at the bottom of the card */
+  height: 2px;    /* Height of the line */
+  background-color: #677677; /* Color of the line; adjust as needed */
+  z-index: 1;   
+}
+
+body {
+  background-color: #0b0d0c;
+  overflow-x: hidden !important;
+}
+html{
+  overflow-x: hidden !important;
+  width: 100%;
+}
+
+
+/* Profile Page */
+.profile-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(254, 120, 21);
+  padding: 15px 15px;
+}
+.profile-page-name {
+  font-size: 23px; /* adjust as needed */
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.amazon-logo img{
+  height: 35px;
+  filter: brightness(0);
+}
+.amazon-logo {
+  position: relative;
+  filter: invert(100%);
+}
+
+.profile-close-btn a{
+  color: white;
+  font-size: 30px;
+}
+
+.profile-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff8f3;
+  height: 80vh;
+  gap: 100px;
+  padding: 50px 0px;
+}
+
+.profile-pic img{
+  border-radius: 50%;
+  height: 90vw;
+  width: 90vw;
+}
+
+.profile-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.on-duty{
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  color: white;
+  background-color: rgb(254, 120, 21);
+}
+
+.profile-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-top: solid 1px #e0e0e0;
+  padding: 20px 10px;
+
+}
+#datetime{
+  font-size: 13px;
+  font-weight: bold;
+  padding-top: 10px;
+  font-family: inherit;
+}
+.modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7); /* Semi-transparent background */
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+p.random-address{
+  font-size: 1.5rem !important; 
+  margin-bottom: 0px;
+  margin-top: -5px; 
+  line-height: 25px;
+}
+.random-address{
+  font-size: 1.5rem !important; 
+  margin-bottom: 0px;
+   margin-top: -15px; 
+}
+p.delivery-info{
+  margin-top: 0px;
+}
+
+
+
+
+
+
+
