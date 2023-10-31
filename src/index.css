@@ -344,7 +344,36 @@ p.delivery-info{
 
 
 
+.login-page-container {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertical center alignment */
+  align-items: center; /* Horizontal center alignment */
+}
 
+.login-logo {
+  margin-bottom: 20px;
+  padding-bottom: 100px;
+  width: 80vw;
+  font-size: 2.5rem;
 
+}
 
+  .row {
+    width: 100%;
+    max-width: 500px; /* Control the maximum width of the form */
+  }
 
+  .phone-input {
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: burlywood !important;
+  }

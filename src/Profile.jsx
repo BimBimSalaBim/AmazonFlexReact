@@ -81,10 +81,10 @@ function ProfileMain() {
             height: '80vh'  // This ensures the background image covers the full viewport height
             }}>
             <div className="profile-pic">
-                <img src={profilePic} alt="Ahmed Ali" />
+                <img src={localStorage.getItem("userPic")} alt="ProfilePic" />
             </div>
             <div className="profile-content">
-                <div id="profile-name" className="profile-page-name" style={{ color: 'black' }}>{userName}</div>
+                <div id="profile-name" className="profile-page-name" style={{ color: 'black' }}>{localStorage.getItem("userName")}</div>
                 <div className="on-duty">
                     <h6>ON DUTY</h6>
                 </div>

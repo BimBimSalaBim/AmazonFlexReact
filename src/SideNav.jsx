@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 function SideNav() {
     const sidenavRef = useRef(null);
-    const [userName, setUserName] = useState(sessionStorage.getItem('userName') || 'Default Name');
+    const [userName, setUserName] = useState(localStorage.getItem('userName') || 'Default Name');
     
     useEffect(() => {
         M.Sidenav.init(sidenavRef.current);
         const updateUserName = () => {
-            setUserName(sessionStorage.getItem('userName') || 'Default Name');
+            setUserName(localStorage.getItem('userName') || 'Default Name');
         };
 
         // Add event listener to listen for storage changes
@@ -39,7 +39,7 @@ function SideNav() {
             <li>
                 <div className="profile">
                 <Link to="/profile" onClick={closeSidenav} style={{ border: 'none' }}>
-                    <img src={profilePic} alt="Ahmed Ali" />
+                    <img src={localStorage.getItem("userPic")} alt="Profile Pic" />
                 </Link>
 
                     {/* <img src={profilePic} alt="Ahmed Ali" /> */}
