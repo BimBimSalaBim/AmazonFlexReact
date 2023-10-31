@@ -40,17 +40,41 @@ function App() {
                                 <>
                                     {location.pathname !== '/profile' && <NavBar />}
                                     <SideNav />
-                                    {location.pathname !== '/profile' && <Tabs />}
-                                    {location.pathname !== '/profile' && <SearchBar />}
-                                    <CardContainer />
+                                    {location.pathname !== '/profile' && location.pathname !== '/settings'&&<Tabs />}
+                                    {location.pathname !== '/profile' && location.pathname !== '/settings'&& <SearchBar />}
+                                    {location.pathname !== '/profile' && location.pathname !== '/settings'&& <CardContainer />}
+                                    {location.pathname === '/settings'&&<Settings />}
                                 </>
                             ) : (
                                 <LoginPage setIsLoggedIn={setIsLoggedIn} />
                             )}
                         </>
                     } />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/profile" element={
+                                                <>
+                                                {isLoggedIn ? (
+                                                    <>
+                                                    <Profile />
+                                                    </>
+                                                ) : (
+                                                    <LoginPage setIsLoggedIn={setIsLoggedIn} />
+                                                )}
+                                            </>
+                   
+                }/>
+                    <Route path="/settings" element={
+                        <>
+                        {isLoggedIn ? (
+                            <>      
+                            {location.pathname !== '/profile' && <NavBar />}
+                            <SideNav />
+                            <Settings />
+                            </>
+                        ) : (
+                            <LoginPage setIsLoggedIn={setIsLoggedIn} />
+                        )}
+                    </>
+                } />
                     {/* Add more routes as needed */}
                 </Routes>
                 {/* More components or logic can be added here as needed */}

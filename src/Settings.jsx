@@ -11,27 +11,22 @@ function Settings() {
         e.preventDefault();
 
         // Update session storage
-        sessionStorage.setItem("userName", name);
-        sessionStorage.setItem("profilePic", profilePic);
+        localStorage.setItem("userName", name);
+        localStorage.setItem("profilePic", profilePic);
 
 
-        sessionStorage.setItem('stationAdd', stationAddress);
-        sessionStorage.setItem('stationCity', city);
+        localStorage.setItem('stationAdd', stationAddress);
+        localStorage.setItem('stationCity', city);
         alert('Settings updated successfully!');
     }
 
     return (
-        <div className="container">
+        <div className="settings-container">
             <h5>Settings</h5>
             <form onSubmit={handleSubmit}>
                 <div className="input-field">
                     <input type="text" id="name" value={name} onChange={e => setName(e.target.value)} />
                     <label htmlFor="name">Name</label>
-                </div>
-
-                <div className="input-field">
-                    <input type="text" id="profilePic" value={profilePic} onChange={e => setProfilePic(e.target.value)} />
-                    <label htmlFor="profilePic">Profile Pic URL</label>
                 </div>
 
                 <div className="input-field">
@@ -44,8 +39,11 @@ function Settings() {
                     <label htmlFor="city">Station City</label>
                 </div>
 
-                <button className="btn waves-effect waves-light" type="submit">
+                <button className="btn waves-effect waves-light submit-btn" type="submit">
                     Update Settings
+                </button>
+                <button className="btn waves-effect waves-light submit-btn" >
+                    Buy More Credits
                 </button>
             </form>
         </div>

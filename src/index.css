@@ -374,6 +374,19 @@ p.delivery-info{
   .submit-btn {
     width: 100%;
     font-size: 18px;
+    margin-top: 2vh;
     border-radius: 5px;
     background-color: burlywood !important;
+  }
+
+  .settings-container {
+
+    justify-content: center;
+    padding-top: 25vh;
+    padding-inline: 10vw;
+    color: white;
+    background-color: #485050;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
   }

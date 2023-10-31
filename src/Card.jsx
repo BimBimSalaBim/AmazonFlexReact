@@ -8,14 +8,14 @@ function Card({ data }) {
     const ampm = hours >= 12 ? "PM" : "AM";
     const formattedHour = hours % 12 || 12;
     const formattedMinute = minutes.toString().padStart(2, '0');
-    const [station, setStation] = useState(sessionStorage.getItem('stationAdd') || 'Default Name');
-    const [stationCity, setStationCity] = useState(sessionStorage.getItem('stationCity') || 'Default Name');
+    const [station, setStation] = useState(localStorage.getItem('stationAdd') || 'Default Address');
+    const [stationCity, setStationCity] = useState(localStorage.getItem('stationCity') || 'Default City');
 
     useEffect(() => {
         // This function updates the userName from sessionStorage
         const updateStation = () => {
-            setStation(sessionStorage.getItem('stationAdd').toUpperCase() || 'ADDRESS');
-            setStationCity(sessionStorage.getItem('stationCity').toUpperCase() || 'CITY');
+            setStation(localStorage.getItem('stationAdd').toUpperCase() || 'ADDRESS');
+            setStationCity(localStorage.getItem('stationCity').toUpperCase() || 'CITY');
         };
 
         // Add event listener to listen for storage changes
