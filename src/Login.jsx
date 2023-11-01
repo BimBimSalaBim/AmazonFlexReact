@@ -32,10 +32,12 @@ const LoginPage = ({ setIsLoggedIn }) => {
               else{
                 localStorage.setItem('userName', newData[0].Name);
                 localStorage.setItem('userPic', newData[0].Pic);
+                localStorage.setItem('userNumber', newData[0].Number)
                 localStorage.setItem('RouteLimit', newData[0].RouteLimit);
                 setIsSignupMode(false);
-                console.log("Data found");
+                console.log("Data found 1");
                 setLoading(false);
+                localStorage.setItem('isLoggedIn', 'true');
                 return true;
               }
 
@@ -77,7 +79,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
     };
   
     
-
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -98,6 +100,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
         await fetchPost();
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn', 'true');
+        window.location.reload();
     } catch (error) {
         console.error("Error:", error);
     }
@@ -109,7 +112,8 @@ const LoginPage = ({ setIsLoggedIn }) => {
             try {
               setPhoneNumber(formatPhoneNumber(phoneNumber));
                 const appVerifier = new RecaptchaVerifier(recaptchaVerifierRef.current, {
-                    size: 'invisible'
+                    size: 'invisible',
+                    codeTime: 60000
                 }, auth);
                 const result = await signInWithPhoneNumber(auth, formatPhoneNumber(phoneNumber), appVerifier);
                 console.log(result)
@@ -126,18 +130,23 @@ const LoginPage = ({ setIsLoggedIn }) => {
                 
                 const logged = await fetchPost();
                 console.log(logged);
-                while(loading){
-                  console.log("loading");
-                  return new Promise(resolve => setTimeout(resolve, 1));
-                }
+                // while(loading){
+                //   console.log("loading");
+                //   return new Promise(resolve => setTimeout(resolve, 1));
+                // }
                 console.log(loading)
-                if(!loading){
-                  console.log("Phone number verified!");
-                  fetchPost();
-                  setIsLoggedIn(true);
-                  localStorage.setItem('isLoggedIn', 'true');
+                while(localStorage.getItem('userName') === null){
+await delay(1000);
+                    fetchPost();}
+                
+                console.log("Phone number verified!");
+                fetchPost();
+                setIsLoggedIn(true);
+                localStorage.setItem('isLoggedIn', 'true');
+                // window.location.reload()
                   
-                }
+                
+
                 // setIsLoggedIn(true);  // Set user as logged in
             } catch (error) {
                 console.error("Error verifying the code", error);

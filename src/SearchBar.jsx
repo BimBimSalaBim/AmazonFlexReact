@@ -1,16 +1,47 @@
 import React, { useState } from 'react';
 import barcodeImage from './assets/barcode.png';
+import { auth, db } from './firebase-config';
+import { collection, setDoc, getDocs, where, query, doc } from 'firebase/firestore';
 
 function SearchBar() {
     const [inputValue, setInputValue] = useState('');
-
-    const handleKeyDown = (event) => {
+    const formatPhoneNumber = (input) => {
+        // If already in the +1 format
+        if (input.startsWith("+1") && input.length === 12) {
+            return input;
+        }
+    
+        // Remove all non-numeric characters
+        const numeric = input.replace(/\D/g, '');
+    
+        // Prepend the +1 country code
+        return `+1${numeric}`;
+    };
+    const handleKeyDown = async (event) => {
         if (event.key === 'Enter' || event.keyCode === 13) {
-            sessionStorage.setItem("block", inputValue);
+            
+            // Fetch RouteLimit from Firebase Firestore
+            const q =  query(collection(db, "Users"),where("Number", "==", formatPhoneNumber(localStorage.getItem('userNumber'))));
+            const querySnapshot = await getDocs(q);
+            
+            // Assuming RouteLimit is in the first document of the results:
+            const routeLimit = querySnapshot.docs[0].data().RouteLimit;
+            
+            if (routeLimit <= 0) {
+                alert("Route limit exceeded!");
+                // M.toast({html: 'Payment Complete!'});
+                return;
+            }
+            // Update RouteLimit in Firebase Firestore
+            const userRef = doc(db, "Users", formatPhoneNumber(localStorage.getItem('userNumber')));
+            await setDoc(userRef, {
+                RouteLimit: routeLimit - 1
+            }, { merge: true });
+            localStorage.setItem("routeLimit", routeLimit - 1);
+            localStorage.setItem("block", inputValue);
             window.location.reload(); // Refresh the page
         }
     };
-
     return (
         <div className="search-bar-container">
             <i className="material-icons prefix refresh-icon white-text">refresh</i>

@@ -7,7 +7,7 @@ function generateRandomData(count = 5) {
     const streets = ["Wilshire Blvd", "Sunset Blvd",  "Santa Monica Blvd", "Western Ave", "Normandy Ave", "Vermont Ave", "Slauson Ave", "Imperial Hwy"];
     
     const generatedData = [];
-    const block = sessionStorage.getItem("block");
+    const block = localStorage.getItem("block");
     const time = "12:01 AM - 10:59 PM";
 
     for (let i = 1; i <= count; i++) {
@@ -37,7 +37,9 @@ function CardContainer() {
 
     useEffect(() => {
         
-
+        fetch('/api')
+        .then(response => response.json())
+        .then(data => console.log(data));
         setCards(generateRandomData(10));
     }, []);
 

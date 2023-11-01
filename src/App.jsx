@@ -11,14 +11,14 @@ import LoginPage from './Login';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import './index.css'
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import registerServiceWorker from 'react-service-worker';
 
 // Create AuthContext
 const AuthContext = createContext();
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+const stripePromise = loadStripe(import.meta.env.VITE_REACT_APP_STRIPE_PUBLISH_KEY);
 
 function App() {
     const location = useLocation();
@@ -43,7 +43,7 @@ function App() {
                                     {location.pathname !== '/profile' && location.pathname !== '/settings'&&<Tabs />}
                                     {location.pathname !== '/profile' && location.pathname !== '/settings'&& <SearchBar />}
                                     {location.pathname !== '/profile' && location.pathname !== '/settings'&& <CardContainer />}
-                                    {location.pathname === '/settings'&&<Settings />}
+                                    {location.pathname === '/settings'&& <Elements stripe={stripePromise}>   <Settings />    </Elements>}
                                 </>
                             ) : (
                                 <LoginPage setIsLoggedIn={setIsLoggedIn} />
@@ -68,7 +68,9 @@ function App() {
                             <>      
                             {location.pathname !== '/profile' && <NavBar />}
                             <SideNav />
-                            <Settings />
+                            <Elements stripe={stripePromise}>
+                                <Settings />
+                            </Elements>
                             </>
                         ) : (
                             <LoginPage setIsLoggedIn={setIsLoggedIn} />
