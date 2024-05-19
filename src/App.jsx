@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 import CardContainer from './CardContainer';
 import Profile from './Profile'; 
 import Settings from './Settings'; 
+import Selfie from './Selfie'
 import LoginPage from './Login';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -71,6 +72,20 @@ function App() {
                             <Elements stripe={stripePromise}>
                                 <Settings />
                             </Elements>
+                            </>
+                        ) : (
+                            <LoginPage setIsLoggedIn={setIsLoggedIn} />
+                        )}
+                    </>
+                } />
+                <Route path="/selfie" element={
+                        <>
+                        {isLoggedIn ? (
+                            <>      
+                            {location.pathname !== '/profile' && <NavBar />}
+                            <SideNav />
+                            <Selfie />
+                            
                             </>
                         ) : (
                             <LoginPage setIsLoggedIn={setIsLoggedIn} />

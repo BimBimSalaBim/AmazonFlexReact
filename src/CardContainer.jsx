@@ -44,7 +44,7 @@ function CardContainer() {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container" style={{margin: '0 5vw'}}>
             <div id="card-container">
                 {cards.map((cardData, index) => (
                     <Card key={index} data={cardData} />

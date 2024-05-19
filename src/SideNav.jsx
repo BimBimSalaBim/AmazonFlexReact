@@ -1,11 +1,13 @@
 import React, { useEffect, useRef,useState } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
-import profilePic from './assets/selfi.jpeg';
 import { Link } from 'react-router-dom';
 
 function SideNav() {
     const sidenavRef = useRef(null);
     const [userName, setUserName] = useState(localStorage.getItem('userName') || 'Default Name');
+    
+
+
     
     useEffect(() => {
         M.Sidenav.init(sidenavRef.current);
@@ -59,7 +61,7 @@ function SideNav() {
             <li><a href="#!">Calendar</a></li>
             <li><a href="#!">Earnings</a></li>
             <li><a href="#!">Healthcare Subsidy</a></li>
-            <li><a href="#!" className="driver-support"><i className="material-icons">phone</i> Driver Support</a></li>
+            <li><a href="/selfie" className="driver-support"><i className="material-icons">phone</i> Driver Support</a></li>
             <li><a href="#!" className="emergency-help"><i className="material-icons">warning</i> Emergency Help</a></li>
         </ul>
     );

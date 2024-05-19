@@ -14,7 +14,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
     const [isSignupMode, setIsSignupMode] = useState(false);
     const [fullName, setFullName] = useState('');
     const [profilePic, setProfilePic] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const fetchPost = () => {
       const Doc = query(collection(db, "Users"),where("Number", "==", formatPhoneNumber(phoneNumber)));
       setLoading(true);
@@ -97,9 +97,15 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
             Pic: downloadURL,
             RouteLimit:5
         });
+        setLoading(true);
         await fetchPost();
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userName', fullName);
+        localStorage.setItem('userPic', downloadURL);
+        localStorage.setItem('userNumber', phoneNumber)
+        localStorage.setItem('RouteLimit', 5);
+        
         window.location.reload();
     } catch (error) {
         console.error("Error:", error);
@@ -108,6 +114,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
         if (!isVerificationPhase) {
             try {
               setPhoneNumber(formatPhoneNumber(phoneNumber));
@@ -119,7 +126,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
                 console.log(result)
                 setConfirmationResult(result);
                 setIsVerificationPhase(true);
-  
+                setLoading(false);
             } catch (error) {
                 console.error("Error sending verification code", error);
             }
@@ -127,7 +134,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
             try {
                 await confirmationResult.confirm(verificationCode);
                 // ;  // Switch to signup mode after verification
-                
+                setLoading(true);
                 const logged = await fetchPost();
                 console.log(logged);
                 // while(loading){
@@ -136,7 +143,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
                 // }
                 console.log(loading)
                 while(localStorage.getItem('userName') === null){
-await delay(1000);
+                    await delay(1000);
                     fetchPost();}
                 
                 console.log("Phone number verified!");
@@ -144,7 +151,7 @@ await delay(1000);
                 setIsLoggedIn(true);
                 localStorage.setItem('isLoggedIn', 'true');
                 // window.location.reload()
-                  
+                setLoading(false);
                 
 
                 // setIsLoggedIn(true);  // Set user as logged in
@@ -163,11 +170,12 @@ await delay(1000);
                 <div className="row">
                     <form className="col s12" onSubmit={handleSignup}>
                         <div className="row">
-                            <div className="input-field col s12">
+                            <div className="input-field col s12 white-text">
                                 <input 
                                     type="text"
                                     value={fullName}
                                     onChange={(e) => setFullName(e.target.value)}
+                                    className="white-text"
                                     placeholder="Full Name"
                                 />
                             </div>
@@ -210,9 +218,12 @@ await delay(1000);
                         </div>
                         <div className="row">
                             <div className="col s12">
+                            {loading ? (
+                                <div className="spinner"></div>
+                                ) : (
                                 <button className="btn waves-effect waves-light submit-btn" type="submit">
                                     {!isVerificationPhase ? "Send Verification Code" : "Verify Code"}
-                                </button>
+                                </button>)}
                             </div>
                         </div>
                     </form>

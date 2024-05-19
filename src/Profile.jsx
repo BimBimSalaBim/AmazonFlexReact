@@ -77,18 +77,17 @@ function ProfileMain() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             overflow: 'hidden',
-            backgroundRepeat: 'no-repeat',
-            height: '80vh'  // This ensures the background image covers the full viewport height
+            backgroundRepeat: 'no-repeat', // This ensures the background image covers the full viewport height
             }}>
             <div className="profile-pic">
                 <img src={localStorage.getItem("userPic")} alt="ProfilePic" />
             </div>
             <div className="profile-content">
-                <div id="profile-name" className="profile-page-name" style={{ color: 'black' }}>{localStorage.getItem("userName")}</div>
+                <div id="profile-name" className="profile-page-name" >{localStorage.getItem("userName")}</div>
                 <div className="on-duty">
                     <h6>ON DUTY</h6>
                 </div>
-                <div id="datetime" style={{ color: 'black' }}>{dateTime}</div>
+                <div id="datetime" style={{ color: '#3c3c3c',paddingTop:'1vh',fontSize:'medium',fontWeight:'bold' }}>{dateTime}</div>
             </div>
         </main>
     );
@@ -105,7 +104,7 @@ function ProfileFooter() {
 
 export default function ProfilePage() {
     return (
-        <div>
+        <div style={{backgroundColor:'white',height:'100vh',overflow: 'hidden'}}>
             <ProfileHeader />
             <ProfileMain />
             <ProfileFooter />

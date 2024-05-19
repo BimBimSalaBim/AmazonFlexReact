@@ -5,7 +5,7 @@ function BuyButtonComponent() {
   return (
     <stripe-buy-button
       buy-button-id="{{BUY_BUTTON_ID}}"
-      publishable-key="pk_test_51O7NtIE8MeFtYXm9WpcSQTWg03Bd8SWjU6eKHMuHzJevRBKdktIMoBsNxh3Ei9jzyStK9p5pFlUm8oXxz57rDKTy004v6MeuVu"
+      publishable-key={process.env.STRIPE_PUBLISHABLE_KEY}
     >
     </stripe-buy-button>
   );

@@ -10,7 +10,7 @@ function Settings() {
     const [name, setName] = useState(localStorage.getItem("userName") || "");
     const [stationAddress, setStationAddress] = useState(localStorage.getItem("stationAdd") || "");
     const [city, setCity] = useState("");  // Assuming you don't have a city in sessionStorage yet
-    const [RouteLimit, setRouteLimit] = useState(null);
+    const [RouteLimit, setRouteLimit] = useState(String);
 
     // payment
     // const [showToast, setShowToast] = useState(false);
@@ -54,9 +54,9 @@ function Settings() {
             // Modify the query as per your Firestore collection's structure
             const q = query(collection(db, "Users"), where("Number", "==", formatPhoneNumber(localStorage.getItem('userNumber'))));
             const querySnapshot = await getDocs(q);
-    
+
             if (!querySnapshot.empty) {
-                const RouteLimitValue = querySnapshot.docs[0].data().RouteLimit;
+                const RouteLimitValue = querySnapshot.docs[0].data().RouteLimit.toString();
                 console.log(RouteLimitValue);
                 setRouteLimit(RouteLimitValue);
             } else {
@@ -121,7 +121,7 @@ function StripePurchaseButton({ onPaymentSuccess }) {
     const [creditQuantity, setCreditQuantity] = useState(1);  // Default to 1 credit
     const [loading, setLoading] = useState(false);
 
-    const CREDIT_VALUE = 0.75;  // Set this to the value of one credit
+    const CREDIT_VALUE = 1;  // Set this to the value of one credit
 
     const totalAmount = creditQuantity * CREDIT_VALUE; // Calculate the total amount
 
@@ -151,7 +151,7 @@ function StripePurchaseButton({ onPaymentSuccess }) {
     
         if (result.error) {
             console.log(result.error.message);
-M.toast({html:result.error.message});
+        M.toast({html:result.error.message});
         } else {
             if (result.paymentIntent.status === 'succeeded') {
                 console.log('Payment successful!');
@@ -175,7 +175,7 @@ M.toast({html:result.error.message});
                   })
                   .catch(error => {
                     console.error("Error while updating user data:", error);
-M.toast({html:error});    
+                    M.toast({html:error});    
               });
 
             }
